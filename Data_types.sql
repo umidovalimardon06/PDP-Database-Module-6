@@ -149,4 +149,39 @@ VALUES ('TOKYO',ARRAY['MATH','HISTORY','ICT'],
 
 
 
+CREATE TABLE STUDENTS(
+    id smallserial primary key ,
+    name character varying(20) not null ,
+    courses character varying(20)[] not null ,
+    scores float4[] not null
+);
+
+
+CREATE DOMAIN domain_type as SMALLINT
+    CHECK (VALUE BETWEEN 18 AND 60)
+;
+CREATE DOMAIN domain_type_def as SMALLINT
+    DEFAULT 19
+    CHECK (VALUE BETWEEN 18 AND 60)
+;
+
+DROP TABLE DOMAIN_TABLE;
+
+CREATE TABLE DOMAIN_TABLE(
+    age domain_type_def,
+    name varchar not null
+);
+
+INSERT INTO DOMAIN_TABLE(name) VALUES ('TOKYO');
+
+
+
+
+
+
+
+
+
+
+
 
