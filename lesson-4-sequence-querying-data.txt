@@ -1,0 +1,54 @@
+*Sequence - bu database obyekti bo'lib,ma'lum bir unique yoki non
+            unique integer(butun-son)larni generate qilib beruvchi tip.
+
+	CREATE SEQUENCE [NAME] 
+	[DEFAULT EXPRESSION]
+	START WITH (N)
+	INCREMENT BY (M)
+	MINVALUE (L)
+	MAXVALUE	 (1)
+	CYCLE | NO CYCLE
+
+	CREATE TABLE [TABLE-NAME](
+	ID INT PRIMARY KEY DEFALUT nexval('sequence-name')
+	)
+
+
+------------------  QUERYING-DATA -----------------------
+Quering-data - DBMSga o'zi tushunadigan standart til orqali 
+ma'lumot qaytarish so'rovlarini yuborish tushuniladi.Bunday
+so'rovlar DML ning (retrieval) SELECT kammandasi ishlatiladi.
+
+SELECT ...............
+
+SELECT *; -- hamma column-rowlarni qaytaradi.
+SELECT [field],[field] -- column boyicha qaytaradi.
+|| ' text ' || -- fieldlarni qo'shish uchun.
+SELECT [field] AS (alias) -- aliasing orqali column qaytarish.
+SELECT [field]... FROM [TABLE] ORDER BY -- sortlab chiqarish(ASC,DESC)
+SELECT [field]... FROM [TABLE] LIMIT -- limitlab chiqarish
+WHERE,LIKE,ILIKE - bu clauselar bo'lib unda CONDITION oraqali data retrieve qilamiz
+
+WHERE IN (..) / WHERE NOT IN (...)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
