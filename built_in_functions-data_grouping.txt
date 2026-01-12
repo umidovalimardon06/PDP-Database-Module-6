@@ -58,6 +58,29 @@
  SELECT "right"('Hello',2);
 
 
+-position: a stringni b stringdagi indexini qaytaradi.
+	   position('he' IN 'hello') -> 1
+
+ SELECT position('hell' IN 'hello');
+
+ SELECT *
+ FROM investments
+ WHERE position('IT' in investment_type) = 1;
+
+-repeat: stringni n marta qayta yozadi.
+ 	 repeat('/4/ ',3) -> /4/ /4/ /4/ /4/
+
+
+-substring: string ichidagi n indeksdan boshlab m uzunlikda yangi string olish
+
+ SELECT substring('hello world here',7,5); -> world
+
+
+
+
+
+
+
 
 
 

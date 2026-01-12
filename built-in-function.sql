@@ -44,11 +44,11 @@ SELECT chr(81);
 
 -- ----------------------------------------------------------------
 
-SELECT concat('Hello','World','eyo');
+SELECT concat('Hello', 'World', 'eyo');
 
 -- ----------------------------------------------------------------
 
-SELECT concat_ws(' ','Hello','World','eyo');
+SELECT concat_ws(' ', 'Hello', 'World', 'eyo');
 
 -- -----------------------------------------------------------------
 
@@ -58,18 +58,35 @@ SELECT initcap('Hello world what is happening here!');
 
 -- ------------------------------------------------------------------
 
-SELECT "left"('Hello',2);
+SELECT "left"('Hello', 2);
+
+-- -------------------------------------------------------------------
+-- ------------------------------------------------------------------
+
+SELECT "left"('Hello', 2);
 
 -- -------------------------------------------------------------------
 
-SELECT "right"('Hello',2);
+SELECT position('hell' IN 'hello');
+
+SELECT *
+FROM investments
+WHERE position('IT' in investment_type) = 1;
+
+
+-- -------------------------------------------------------------------
+
+SELECT repeat('*/* ',5);
+
+-- -------------------------------------------------------------------
+
+SELECT substring('hello world here',7,5);
+
+
 
 
 /*
     needs to be considered:
-    -position
-    -repeat
-    -substring
     -random
     -ceil
     -floor
