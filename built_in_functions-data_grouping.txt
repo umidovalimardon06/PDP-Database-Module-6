@@ -1,0 +1,70 @@
+1.Sana va vaqt funksiyalari
+
+-age: ikkita vaqt oralig'ini hisoblash uchun kerak:
+      -- ikkita timestamp
+      -- timestamp va hozirgi vaqt
+
+ SELECT age( timestamp '2007-11-21');
+ SELECT age(timestamp '2026-1-1',timestamp '2024-1-10');
+ SELECT age(timestamp '2025-1-1 14:30:21',timestamp '2020-3-21 21:01:20');
+ SELECT age(timestamp '2006-11-30 00:00:10');
+
+-extract: timestampdan individual componentlarni ajratib beradi.
+	
+ SELECT extract(century from timestamp '2022-1-10');
+ SELECT extract(month from timestamp '2022-1-10');
+ SELECT extract(day from timestamp '2022-1-10');
+ SELECT extract(hour from timestamp '2022-1-10 21:10:30');
+ SELECT extract(minute from timestamp '2022-1-10 21:10:30');
+ SELECT extract(second from timestamp '2022-1-10 21:10:32');
+ SELECT extract(dow from timestamp '2022-1-10 21:10:32');
+ SELECT extract(doy from timestamp '2010-2-11 21:10:32');
+
+-to_date: stringni date ga maxsus pattern orqali o'giradi
+	
+ SELECT to_date('20241014','YYYYMMDD');
+
+-to_timestamp: stringni timestampga maxsus pattern orqali o'giradi
+
+ SELECT to_timestamp('2024-08-15 14:30:25', 'YYYY-MM-DD HH24:MI:SS');
+
+-ascii: charni asciidagi kodiga o'tkazadi
+
+ SELECT ascii('A') -> 65
+
+-chr: ascii kodini charga o'tkazadi
+
+ SELECT chr(66) -> 
+
+-concat: bir-nechta stringni bir-biriga qo'shadi.
+
+ SELECT concat('Hello','World','eyo');
+
+-concat_ws: bir nechta stringni bir-biriga 'x' bilan qo'shib chiqadi.
+
+ SELECT concat_ws(' ','Hello','World','eyo');
+ 
+-format:
+-initcap: stringdagi so'zlarning birinchi belgisini katta qilib chiqadi
+
+ SELECT initcap('Hello world what is happening here!');
+
+-left: chap tarafdan n ta character qaytaradi
+
+ SELECT "left"('Hello',4);
+
+-right: o'ng tarafdan n ta character qaytaradi
+
+ SELECT "right"('Hello',2);
+
+
+
+
+
+
+
+
+
+
+
+
