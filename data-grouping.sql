@@ -238,6 +238,64 @@ FROM investments_gr inv
 GROUP BY investor_name
 HAVING count(inv.amount)>2;
 
+-- --------------------------------------------------------------------------
+-- UNION OPERATIONS:
+
+/*
+    UNION - combines/removes-duplicates
+    UNION ALL - combines/keeps-duplicates
+
+
+*/
+
+
+CREATE TABLE crypto_assets(
+    crypto_id INT PRIMARY KEY ,
+    crypto_name VARCHAR(50) ,
+    symbol VARCHAR(10) ,
+    market_cap_usd BIGINT
+);
+
+INSERT INTO crypto_assets(crypto_id, crypto_name, symbol, market_cap_usd)
+VALUES (1,'Bitcoin','BTC',850000000000) ,
+       (2, 'Ethereum', 'ETH', 420000000000),
+       (3, 'Solana', 'SOL', 90000000000),
+       (4, 'Cardano', 'ADA', 65000000000),
+       (5, 'Polygon', 'MATIC', 18000000000)
+;
+
+DROP TABLE crypto_investments;
+CREATE TABLE crypto_investments(
+    investment_id INT PRIMARY KEY ,
+    investor_name VARCHAR(50) ,
+    crypto_symbol VARCHAR(10) ,
+    amount_invested_usd DECIMAL(12,2) ,
+    investment_date DATE
+);
+
+INSERT INTO crypto_investments (investment_id, investor_name, crypto_symbol, amount_invested_usd, investment_date)
+VALUES (101, 'Alice', 'BTC', 15000.00, '2024-01-10'),
+       (102, 'Bob', 'ETH', 8000.00, '2024-02-05'),
+       (103, 'Charlie', 'SOL', 5000.00, '2024-02-20'),
+       (104, 'Alice', 'ETH', 12000.00, '2024-03-01'),
+       (105, 'David', 'BTC', 20000.00, '2024-03-15'),
+       (106, 'Eve', 'MATIC', 3000.00, '2024-04-01')
+;
+
+SELECT * FROM crypto_assets;
+SELECT * FROM crypto_investments;
+
+
+SELECT symbol as UNIOIN FROM crypto_assets
+UNION
+SELECT crypto_symbol FROM crypto_investments;
+
+SELECT symbol as UNIOIN FROM crypto_assets
+UNION ALL
+SELECT crypto_symbol FROM crypto_investments;
+
+
+
 
 
 
