@@ -22,9 +22,21 @@
 	Union operatsiyalari ikkata tableni vertikal 
 	ravishda qo'shish uchun ishlatiladi.
 	
-
-
-
-
+	qoidalar:
+	1.Ustun sonlari bir-xil bo'lishi kerak
+	2.Data typelar mos kelishi kerak
+	3.Jafval nomi birinchi selectdan olinadi
+	4.ORDER BY oxirida yoziladi.
 
 4.Views
+
+	View bu berilgan query natijasi bo'lib o'zi ma'lum
+        bir jadval sifatida xotirada saqlanyamaydi.
+	
+	-logic ni bitta joyda saqlash
+
+	2turi mavjud:
+	1.Standart view(updates auto)
+	2.Materialized view(good for reports)	
+		
+
