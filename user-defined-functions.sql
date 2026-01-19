@@ -55,6 +55,26 @@ $$ LANGUAGE plpgsql;
 SELECT get_max(10,11);
 SELECT get_max(10,11,13);
 
+-- ---------------------------------------------------------------
+CREATE FUNCTION transaction_details() returns
+    table(
+        customer_id int,
+        name varchar,
+        age int,
+        transaction_id int,
+        amount numeric,
+        transaction_date date
+         ) as $$
+
+    declare
+    begin
+--         return query ( select * from tr)
+    end;
+$$ language plpgsql;
+
+
+
+
 
 
 
