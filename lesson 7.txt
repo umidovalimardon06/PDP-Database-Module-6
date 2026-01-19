@@ -1,0 +1,466 @@
+
+ 
+
+ -------------- PL/pgSQL -----------------
+
+ Procedural PostgreSQL 
+
+ boshlashdan oldin bitta muammoni koramiz:
+
+ select 'Ali'
+ select 'I'm Ali'
+
+
+
+ select 'I''m Ali'
+
+ select E'I'm Ali'
+
+
+
+
+ ------------- Anonymous block ------------------
+
+
+
+<<myblock>>
+
+declare
+
+begin
+
+	// esefqwfr
+	sdgewgtwegthg
+	swethwehtweth
+
+end;
+
+
+
+
+do '
+
+declare
+
+begin
+
+
+end
+';
+
+
+
+
+
+do '
+declare
+
+begin
+
+    raise info ''Hello PDP'';
+
+end';
+
+
+
+
+
+
+do $$
+declare
+
+begin
+
+    raise info 'It is time: % |', '15:30';
+
+end $$;
+
+
+
+
+
+
+
+do $$
+declare
+
+begin
+
+    raise info 'It is time: % |', current_time(0);
+
+end $$;
+
+
+
+
+
+
+
+
+
+
+ -------------- Variables and constant --------------
+
+
+
+do $$
+    declare
+
+        v_time date := current_date;
+
+    begin
+
+        raise info 'It is time: % |', v_time;
+
+end $$;
+
+
+
+
+
+
+
+do $$
+    declare
+
+        n integer := 23;
+
+    begin
+
+        raise info 'It is time: % |', n;
+
+    end $$;
+
+
+
+
+
+
+
+ --> Select into statement
+
+
+do $$
+
+    declare
+
+        rand_id int;
+        v_name varchar;
+
+    begin
+
+        rand_id := round( random() * 20+61 );
+
+        select first_name into v_name from employee where id = rand_id;
+
+        raise info 'Rand name: % |', v_name ;
+
+    end
+
+$$;
+
+
+
+
+
+
+ --> rowtype
+
+
+do $$
+
+    declare
+
+        rand_id int;
+        v_employee employee%rowtype;
+
+    begin
+
+        rand_id := round( random() * 20+61 );
+
+        select * into v_employee from employee where id = rand_id;
+
+        raise info 'Rand employee: % |', v_employee ;
+
+    end
+
+$$; 
+
+
+
+ --> record    -  rowtype bilan bir xil bitta farqi default struktura bomaydi
+
+
+do $$
+
+    declare
+
+        rand_id int;
+        v_employee record;
+
+    begin
+
+        rand_id := round( random() * 20+61 );
+
+        select * into v_employee from employee where id = rand_id;
+
+        raise info 'Rand employee: % |', v_employee ;
+        raise info 'employee first name: % |', v_employee.first_name ;
+
+    end
+
+$$;
+
+
+
+
+ --> constanta 
+
+
+
+do $$
+
+    declare
+
+        v_name constant varchar := 'Ali';
+
+    begin
+
+        v_name := 'Alibek';
+
+        raise info 'Name: % ', v_name;
+
+    end
+
+$$;
+
+
+
+
+
+
+
+
+
+
+
+--------------- pl/pgSQL (Control statement) (if, case) ----------------
+
+
+ --> if example
+
+
+do $$
+
+    declare
+        num int := 9;
+    begin
+
+        if num % 2 = 0 then
+            raise info 'num 2 ga qoldiqsiz bo''linadi';
+        end if;
+
+    end
+
+
+$$;
+
+
+
+
+
+ --> if else example
+
+declare
+        a int := round(random()*90)+10;
+        b int := round(random()*90)+10;
+        operation varchar := '*';
+    begin
+
+        if operation = '*' then
+            raise info '% * % = %', a, b, (a*b);
+        elseif operation = '/' then
+            raise info '% / % = %', a, b, (a/b);
+        else
+            raise info 'bunday operation yo''q';
+        end if;
+
+    end
+
+
+
+
+
+
+ --> Calculator if - elseif
+
+
+ do
+$$
+
+    declare
+        a int := round(random()*90);
+        b int := round(random()*90);
+        operation varchar := '*';
+        op varchar := array['+','-','*','/'];
+    begin
+
+        operation := op[round(random()*3+1)];
+
+        if operation = '*' then
+            raise info '% * % = %', a, b, (a*b);
+        elseif operation = '/' then
+            raise info '% / % = %', a, b, (a/b);
+        elseif operation = '+' then
+            raise info '% + % = %', a, b, (a+b);
+        elseif operation = '-' then
+            raise info '% - % = %', a, b, (a-b);
+        else
+            raise info 'toq';
+        end if;
+
+    end
+
+
+$$;
+
+
+
+
+
+ --> case
+
+
+    declare
+        a int := round(random()*90);
+        b int := round(random()*90);
+        operation varchar := '*';
+    begin
+
+        case operation
+        when '*' then raise info '% * % = %', a, b, (a*b);
+        when '/' then raise info '% / % = %', a, b, (a/b);
+        when '+' then raise info '% + % = %', a, b, (a+b);
+        when '-' then raise info '% - % = %', a, b, (a-b);
+        else raise info 'toq';
+        end case ;
+
+    end
+
+
+
+
+
+ --> loop
+
+
+do $$
+
+declare
+
+a int := 5;
+
+begin
+
+loop
+
+raise info 'a = %', a;
+
+if a = 0 then exit;
+end if;
+
+a := a-1;
+
+end loop;
+
+end
+
+$$;
+
+
+
+
+ --> continue
+
+
+do $$
+
+declare
+
+a int := 0;
+
+begin
+
+loop
+
+a := a+1;
+
+continue when a % 3 = 0;
+
+raise info 'a = %', a;
+
+exit when a = 20;
+
+end loop;
+
+end
+
+$$;
+
+
+
+
+
+ --> while 
+
+
+do $$
+
+declare
+
+a int := 10;
+
+begin
+
+while a < 100 loop
+
+raise info 'a = %', a;
+
+a := a+1;
+
+end loop;
+
+end
+
+$$;
+
+
+
+ --> for loop
+
+
+do $$
+
+declare a int;
+
+begin
+
+for a in reverse 1..20 by 2 loop
+
+raise info 'a = %', a;
+
+end loop;
+
+end
+
+$$;
+ 
+
+
+
+
+
+
+
+
+
