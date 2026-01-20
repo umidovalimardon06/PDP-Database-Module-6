@@ -94,8 +94,62 @@ $$
        WHERE loans.status = 'OVERDUE';
     END ;
 $$ LANGUAGE plpgsql;
-
 SELECT overdueLoans();
+
+-- task5:Loan risk category:
+CREATE OR REPLACE FUNCTION loanRiskCategory(loan_amount numeric,interest_rate  numeric,term_months int)
+RETURNS VARCHAR
+AS
+$$
+    DECLARE
+        risk VARCHAR(10);
+    BEGIN
+        IF (loan_amount >= 25000000 AND interest_rate >= 0.25 AND term_months <= 30) THEN
+            risk := 'HIGH';
+        ELSIF (loan_amount BETWEEN 10000000 AND 24999999
+            OR interest_rate BETWEEN 0.18 AND 0.2499
+            OR term_months BETWEEN 31 AND 48) THEN
+            risk := 'MEDIUM';
+        ELSE
+            risk := 'LOW';
+        END IF;
+        RETURN risk;
+    END;
+$$ LANGUAGE plpgsql;
+
+SELECT loanRiskCategory(10,10,10);
+
+-- task6:Days remaining until due:
+CREATE OR REPLACE FUNCTION untilDue(id INT)
+    RETURNS INT
+AS $$
+DECLARE
+    status VARCHAR;
+    days INT;
+BEGIN
+    SELECT loans.status, (loans.due_at - current_date)
+    INTO status, days
+    FROM loans
+    WHERE loans.loan_id = id;
+
+    IF NOT FOUND THEN
+        RETURN NULL;
+    END IF;
+
+    IF (status = 'OVERDUE') THEN
+        RETURN days;   -- will be negative
+    ELSE
+        RETURN days;   -- positive or 0
+    END IF;
+
+END;
+$$ LANGUAGE plpgsql;
+SELECT untilDue(1);
+
+
+
+
+
 
 
 
