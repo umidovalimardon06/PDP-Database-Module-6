@@ -1,0 +1,9 @@
+functions structure:
+
+CREATE OR REPLACE FUNCTION <name>(params)
+RETURNS <data-type/table>
+AS $$
+	DECLARE
+	BEGIN
+	END;
+$$ LANGUAGE plpgsql;
