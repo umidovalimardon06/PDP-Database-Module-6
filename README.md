@@ -22,10 +22,12 @@ This repository is organized into multiple lesson branches:
 - **Lesson 8**  
   https://github.com/umidovalimardon06/PDP-Database-Module-6/tree/lesson-8  
 
-  
 - **Lesson 9**  
   https://github.com/umidovalimardon06/PDP-Database-Module-6/tree/lesson-9  
- 
+
+- **Lesson 10**  
+  https://github.com/umidovalimardon06/PDP-Database-Module-6/tree/lesson-10  
+
 - **Project**  
   https://github.com/umidovalimardon06/PDP-Database-Module-6/tree/pg-wallet-project  
 
