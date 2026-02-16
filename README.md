@@ -96,7 +96,3 @@ Auto-incrementing integer types:
 Any PostgreSQL data type can be defined as an array.
 
 Example: `integer[]`, `text[]`, `numeric[][]`
-
----
-
-**Note:** This reference covers the most commonly used PostgreSQL data types. For more detailed information, consult the official PostgreSQL documentation.
